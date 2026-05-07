@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>FairyOperator — macOS の操作を、妖精が手伝う。</title>
+<meta name="description" content="FairyOperator は macOS 上のキー入れ替え・ウインドウ操作・Dock 拡張・スリープ抑止などをまとめた menubar ユーティリティ。">
+<meta property="og:title" content="FairyOperator">
+<meta property="og:description" content="macOS の操作を、妖精が手伝う。">
+<meta property="og:image" content="https://piggest.github.io/FairyOperator-releases/icon.png">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://piggest.github.io/FairyOperator-releases/">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" type="image/png" href="icon.png">
+<link rel="apple-touch-icon" href="icon.png">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="hero">
+  <div class="container">
+    <img class="hero__icon" src="icon-256.png" alt="FairyOperator" width="160" height="160">
+    <h1 class="hero__title">FairyOperator</h1>
+    <p class="hero__lede">macOS の操作を、妖精が手伝う。</p>
+    <p class="hero__sub">キー入れ替え・ウインドウ操作・Dock 拡張・スリープ抑止 — 必要な妖精だけを呼び出して使う menubar ユーティリティ。</p>
+    <div class="hero__cta">
+      <a class="btn btn--primary" href="https://github.com/piggest/FairyOperator-releases/releases/latest">最新版をダウンロード</a>
+      <a class="btn btn--ghost" href="https://github.com/piggest/FairyOperator-releases">GitHub</a>
+    </div>
+    <p class="hero__meta">macOS 13 Ventura 以降 / Apple Silicon &amp; Intel</p>
+  </div>
+</header>
+
+<section class="features">
+  <div class="container">
+    <h2 class="section__title">妖精たち</h2>
+    <ul class="cards">
+      <li class="card"><h3>キー入れ替え</h3><p>外付けキーボードごとに任意のキーを再マッピング。HID デバイス単位で制御。</p></li>
+      <li class="card"><h3>アプリ切り替え</h3><p>Cmd+Tab を拡張。Unity プロジェクトのアイコンも自動で見つけて表示。</p></li>
+      <li class="card"><h3>クリップボード</h3><p>履歴を保持し、すばやく検索・呼び出し。</p></li>
+      <li class="card"><h3>ウインドウ操作</h3><p>ホットキーで分割・最大化・移動。</p></li>
+      <li class="card"><h3>IME 操作</h3><p>日本語入力のオン/オフを意のままに。</p></li>
+      <li class="card"><h3>メニューバー</h3><p>ステータスバーから機能を即時切替。</p></li>
+      <li class="card"><h3>Dock 拡張</h3><p>応答なしのアプリに砂時計、ウインドウ数バッジなど Dock アイコンを賢く。</p></li>
+      <li class="card"><h3>スリープ抑止</h3><p>必要なときだけ自動でスリープを止める。</p></li>
+    </ul>
+  </div>
+</section>
+
+<section class="shots">
+  <div class="container">
+    <h2 class="section__title">スクリーンショット</h2>
+    <figure class="shot">
+      <img src="screenshots/settings.png" alt="設定画面" loading="lazy">
+      <figcaption>設定画面 — 妖精ごとに個別有効化</figcaption>
+    </figure>
+  </div>
+</section>
+
+<section class="install">
+  <div class="container">
+    <h2 class="section__title">インストール</h2>
+    <ol class="steps">
+      <li><a href="https://github.com/piggest/FairyOperator-releases/releases/latest">最新リリース</a> から <code>FairyOperator.app.zip</code> をダウンロード。</li>
+      <li>解凍して <code>/Applications</code> に配置。</li>
+      <li>初回起動時にアクセシビリティ権限と入力モニタリング権限を許可。</li>
+    </ol>
+    <p class="note">Developer ID 署名 + Notarization 済み。Gatekeeper 警告は出ない想定。</p>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container">
+    <p>© FairyOperator</p>
+    <p><a href="https://github.com/piggest/FairyOperator-releases">GitHub</a> · <a href="https://github.com/piggest/FairyOperator-releases/issues">Issues</a></p>
+  </div>
+</footer>
+</body>
+</html>
