@@ -141,6 +141,18 @@ a:hover { text-decoration: underline; }
   transition: border-color 0.2s ease, transform 0.2s ease;
 }
 .card:hover { border-color: var(--accent); transform: translateY(-2px); }
+.card__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, rgba(138, 118, 214, 0.25), rgba(179, 158, 240, 0.15));
+  color: var(--accent-2);
+  margin-bottom: 14px;
+}
+.card__icon svg { width: 24px; height: 24px; }
 .card h3 { margin: 0 0 8px; font-size: 17px; color: var(--accent-2); }
 .card p { margin: 0; color: var(--fg-muted); font-size: 14px; }
 
