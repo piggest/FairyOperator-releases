@@ -56,5 +56,6 @@ open /Applications/FairyOperator.app
 ## 関連リンク
 
 - [ランディングページ](https://piggest.github.io/FairyOperator-releases/)
+- [機能ガイド](https://piggest.github.io/FairyOperator-releases/guide.html)
 - [Releases](https://github.com/piggest/FairyOperator-releases/releases)
 - [Issues](https://github.com/piggest/FairyOperator-releases/issues)

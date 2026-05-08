@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>機能ガイド — FairyOperator</title>
+<meta name="description" content="FairyOperator のすべての妖精と設定項目、ホットキー、必要な権限をまとめたガイド。">
+<link rel="icon" type="image/png" href="icon.png">
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="guide.css">
+</head>
+<body class="guide">
+
+<header class="topbar">
+  <div class="topbar__inner">
+    <a class="topbar__brand" href="./">
+      <img src="icon-256.png" alt="" width="28" height="28">
+      <span>FairyOperator</span>
+    </a>
+    <nav class="topbar__nav">
+      <a href="./">ホーム</a>
+      <a href="https://github.com/piggest/FairyOperator-releases/releases/latest">ダウンロード</a>
+    </nav>
+  </div>
+</header>
+
+<div class="layout">
+  <aside class="sidebar">
+    <div class="sidebar__inner">
+      <p class="sidebar__title">目次</p>
+      <nav class="toc">
+        <a href="#overview">はじめに</a>
+        <a href="#keyboard">キー入れ替え</a>
+        <a href="#app-switcher">アプリ切り替え</a>
+        <a href="#clipboard">クリップボード</a>
+        <a href="#window">ウインドウ操作</a>
+        <a href="#ime">IME 操作</a>
+        <a href="#menubar">メニューバー</a>
+        <a href="#dock">Dock 拡張</a>
+        <a href="#sleepless">スリープ抑止</a>
+        <a href="#general">一般</a>
+        <a href="#status-icon">メニューバーアイコン</a>
+        <a href="#files">設定ファイル</a>
+      </nav>
+    </div>
+  </aside>
+
+  <main class="content">
+
+    <section id="overview" class="doc">
+      <h1>機能ガイド</h1>
+      <p class="lead">FairyOperator の全機能をひとつのページにまとめた。妖精ごとに「できること」「設定項目」「ホットキー」「必要な権限」を確認できる。</p>
+
+      <h2>前提条件</h2>
+      <table class="kv">
+        <tbody>
+          <tr><th>対応 macOS</th><td>13.0 (Ventura) 以降</td></tr>
+          <tr><th>起動形態</th><td>メニューバー常駐（Dock アイコンなし）</td></tr>
+          <tr><th>必須権限</th><td>アクセシビリティ／入力モニタリング（ほとんどの妖精で必要）</td></tr>
+          <tr><th>追加権限</th><td>画面収録（ウインドウサムネイル取得時）</td></tr>
+        </tbody>
+      </table>
+
+      <div class="callout">
+        <p><strong>初回セットアップ</strong> — システム設定 ›「プライバシーとセキュリティ」› <code>アクセシビリティ</code> と <code>入力監視</code> に FairyOperator を追加すると、ほとんどの妖精が動き始める。</p>
+      </div>
+    </section>
+
+    <section id="keyboard" class="doc">
+      <header class="doc__header">
+        <span class="doc__icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="6" width="19" height="12" rx="2.5"/><path d="M6 10h.01M9 10h.01M12 10h.01M15 10h.01M18 10h.01M7 14h10"/></svg>
+        </span>
+        <div>
+          <h2>キー入れ替えの妖精</h2>
+          <p class="doc__lede">接続中のキーボードごとにキーをリマップ。デバイス別プロファイルで管理。</p>
+        </div>
+      </header>
+
+      <h3>主な機能</h3>
+      <ul>
+        <li>キーボードデバイスごとに独立したマッピングプロファイル</li>
+        <li>通常キー → 通常キーのリマップ（CGEvent タップ）</li>
+        <li>修飾キー同士のリマップ（例: CapsLock → Control）</li>
+        <li>CapsLock → 通常キーのリマップ</li>
+        <li>HID-only キー（CGEvent に現れない特殊キー）のリマップ</li>
+        <li>未接続キーボードのプロファイル保持と再接続時の自動復元</li>
+        <li>最後に押されたキーコードのリアルタイム表示</li>
+      </ul>
+
+      <h3>設定項目</h3>
+      <ul>
+        <li>有効トグル（全体 ON/OFF）</li>
+        <li>キーボード一覧（接続中・未接続を区別。右クリックでプロファイル削除）</li>
+        <li>マッピングエディタ（from → to のペア、ペアごとの有効/無効、プロファイル名編集）</li>
+      </ul>
+
+      <h3>必要な権限</h3>
+      <p>アクセシビリティ／入力モニタリング</p>
+
+      <h3>使用例</h3>
+      <ul>
+        <li>日本語キーボードの「英数」「かな」を Escape など他キーに割り当てる</li>
+        <li>CapsLock を Control にする</li>
+      </ul>
+
+      <div class="callout callout--note">
+        <p>合成イベントには内部マーカー <code>FAIRY</code> を付加して二重リマップを防止している。修飾キー同士のリマップは macOS の HID プロパティを利用するため、アプリ終了後に一時的に残ることがある。</p>
+      </div>
+    </section>
+
+    <section id="app-switcher" class="doc">
+      <header class="doc__header">
+        <span class="doc__icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="5" height="5" rx="1"/><rect x="9.5" y="3" width="5" height="5" rx="1"/><rect x="16" y="3" width="5" height="5" rx="1"/><rect x="3" y="9.5" width="5" height="5" rx="1"/><rect x="9.5" y="9.5" width="5" height="5" rx="1"/><rect x="16" y="9.5" width="5" height="5" rx="1"/><rect x="3" y="16" width="5" height="5" rx="1"/><rect x="9.5" y="16" width="5" height="5" rx="1"/><rect x="16" y="16" width="5" height="5" rx="1"/></svg>
+        </span>
+        <div>
+          <h2>アプリ切り替えの妖精</h2>
+          <p class="doc__lede">ホットキーで最近使用順のアプリ一覧を呼び出す。Cmd+Tab の代替。</p>
+        </div>
+      </header>
+
+      <h3>主な機能</h3>
+      <ul>
+        <li>最近使用順に並んだアプリ一覧パネル（最大 7 列グリッド）</li>
+        <li>ホットキー押し続けで前後選択、離した瞬間に確定</li>
+        <li>Escape でキャンセル、マウスホバー＋クリックでも確定</li>
+        <li>右クリックでウインドウピッカー（サムネイル付き、複数ウインドウから個別選択）</li>
+        <li>最小化ウインドウの自動復元</li>
+        <li>Unity Editor はプロジェクト固有アイコンを自動表示</li>
+        <li>使用順を再起動後も保持</li>
+      </ul>
+
+      <h3>設定項目</h3>
+      <ul>
+        <li>有効トグル</li>
+        <li>進む／戻るキーバインド</li>
+      </ul>
+
+      <h3>ホットキー</h3>
+      <table class="hotkeys">
+        <thead><tr><th>操作</th><th>デフォルト</th></tr></thead>
+        <tbody>
+          <tr><td>進む</td><td><kbd>⌥</kbd><kbd>Tab</kbd></td></tr>
+          <tr><td>戻る</td><td><kbd>⌥</kbd><kbd>⇧</kbd><kbd>Tab</kbd></td></tr>
+          <tr><td>キャンセル</td><td><kbd>Esc</kbd></td></tr>
+          <tr><td>ウインドウピッカー</td><td>右クリック</td></tr>
+        </tbody>
+      </table>
+
+      <h3>必要な権限</h3>
+      <p>アクセシビリティ（ウインドウ復元）／画面収録（ウインドウサムネイル）</p>
+
+      <h3>使用例</h3>
+      <ul>
+        <li>Cmd+Tab より少ない操作でアプリ切り替え</li>
+        <li>多ウインドウアプリの特定ウインドウを直指定</li>
+      </ul>
+    </section>
+
+    <section id="clipboard" class="doc">
+      <header class="doc__header">
+        <span class="doc__icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="4" width="12" height="17" rx="2"/><rect x="9" y="2.5" width="6" height="3" rx="1"/><path d="M9 11h6M9 14h6M9 17h4"/></svg>
+        </span>
+        <div>
+          <h2>クリップボードを集める妖精</h2>
+          <p class="doc__lede">コピー履歴を自動蓄積。ホットキーから過去のテキスト・画像を貼り付け。</p>
+        </div>
+      </header>
+
+      <h3>主な機能</h3>
+      <ul>
+        <li>0.5 秒ポーリングでクリップボード変更を検出</li>
+        <li>テキスト／画像（PNG・TIFF）の両方を保持</li>
+        <li>パスワードマネージャー等の機密タイプ（<code>org.nspasteboard.ConcealedType</code>）は自動除外</li>
+        <li>ピン留めで先頭固定、自動削除対象から除外</li>
+        <li>インクリメンタル検索</li>
+        <li>数字キー <kbd>1</kbd>〜<kbd>9</kbd> で直接選択</li>
+        <li>確定後は前のアプリに自動復帰して <kbd>⌘V</kbd> 送出</li>
+        <li>選んだアイテムは先頭に再配置（ピン留め直後）</li>
+      </ul>
+
+      <h3>設定項目</h3>
+      <ul>
+        <li>有効トグル</li>
+        <li>呼び出しホットキー（デフォルト: <kbd>⌃</kbd><kbd>V</kbd>）</li>
+        <li>検索ホットキー（デフォルト: <kbd>⌘</kbd><kbd>F</kbd>）</li>
+        <li>最大保存件数（20 / 50 / 100 / 200。デフォルト 50）</li>
+        <li>履歴クリアボタン</li>
+      </ul>
+
+      <h3>パネル内操作</h3>
+      <table class="hotkeys">
+        <thead><tr><th>キー</th><th>動作</th></tr></thead>
+        <tbody>
+          <tr><td><kbd>↓</kbd> / <kbd>Tab</kbd></td><td>次へ</td></tr>
+          <tr><td><kbd>↑</kbd></td><td>前へ</td></tr>
+          <tr><td><kbd>Return</kbd></td><td>選択を貼り付け</td></tr>
+          <tr><td><kbd>Delete</kbd></td><td>選択アイテムを削除</td></tr>
+          <tr><td><kbd>⌘</kbd><kbd>Delete</kbd></td><td>履歴を全クリア</td></tr>
+          <tr><td><kbd>Esc</kbd></td><td>キャンセル</td></tr>
+          <tr><td><kbd>1</kbd>〜<kbd>9</kbd></td><td>番号で直接選択</td></tr>
+        </tbody>
+      </table>
+
+      <h3>必要な権限</h3>
+      <p>アクセシビリティ（<kbd>⌘V</kbd> 送出のため）</p>
+
+      <div class="callout callout--note">
+        <p>画像は <code>~/Library/Application Support/FairyOperator/clipboardImages/</code> に PNG として保存される。</p>
+      </div>
+    </section>
+
+    <section id="window" class="doc">
+      <header class="doc__header">
+        <span class="doc__icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="4" width="19" height="14" rx="2"/><path d="M2.5 8h19"/><circle cx="5.5" cy="6" r="0.7" fill="currentColor"/><circle cx="8" cy="6" r="0.7" fill="currentColor"/><path d="M8 21l4-4 4 4"/></svg>
+        </span>
+        <div>
+          <h2>ウインドウ操作の妖精</h2>
+          <p class="doc__lede">ホットキー一発で最前面ウインドウを左右上下半分・最大化・別モニターへ。</p>
+        </div>
+      </header>
+
+      <h3>主な機能</h3>
+      <ul>
+        <li>左半分・右半分・上半分・下半分・最大化</li>
+        <li>別スクリーンへの移動（サイズ比率を維持）</li>
+        <li>マルチモニター対応（ウインドウのあるスクリーンを自動判定）</li>
+      </ul>
+
+      <h3>ホットキー（デフォルト）</h3>
+      <table class="hotkeys">
+        <thead><tr><th>操作</th><th>キー</th></tr></thead>
+        <tbody>
+          <tr><td>左半分</td><td><kbd>⌘</kbd><kbd>⌃</kbd><kbd>←</kbd></td></tr>
+          <tr><td>右半分</td><td><kbd>⌘</kbd><kbd>⌃</kbd><kbd>→</kbd></td></tr>
+          <tr><td>上半分</td><td><kbd>⌘</kbd><kbd>⌃</kbd><kbd>⇧</kbd><kbd>↑</kbd></td></tr>
+          <tr><td>下半分</td><td><kbd>⌃</kbd><kbd>⌥</kbd><kbd>↓</kbd></td></tr>
+          <tr><td>最大化</td><td><kbd>⌃</kbd><kbd>Return</kbd></td></tr>
+          <tr><td>別画面に移動</td><td><kbd>⌃</kbd><kbd>Space</kbd></td></tr>
+        </tbody>
+      </table>
+
+      <h3>必要な権限</h3>
+      <p>アクセシビリティ</p>
+
+      <h3>使用例</h3>
+      <ul>
+        <li>マウスドラッグせず、キーで素早くウインドウを左右分割配置</li>
+        <li>外部モニターと内蔵モニター間の瞬時移動</li>
+      </ul>
+    </section>
+
+    <section id="ime" class="doc">
+      <header class="doc__header">
+        <span class="doc__icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a13 13 0 010 18M12 3a13 13 0 000 18"/></svg>
+        </span>
+        <div>
+          <h2>IME 操作の妖精</h2>
+          <p class="doc__lede">指定キーに IME 切り替えアクションを割り当てるルールエンジン。</p>
+        </div>
+      </header>
+
+      <h3>主な機能</h3>
+      <ul>
+        <li>複数ルールの登録・並べ替え・削除</li>
+        <li>ルールごとの有効／無効</li>
+        <li>トリガーキー（修飾キー付きコンボ）</li>
+        <li>アクション 3 種：直接入力に切り替え／日本語入力に切り替え／トグル</li>
+        <li>「通過」設定（元のキー動作も維持）</li>
+        <li>対象アプリを bundleID で絞り込み（空なら全アプリ）</li>
+      </ul>
+
+      <h3>設定項目</h3>
+      <ul>
+        <li>有効トグル</li>
+        <li>IME ルール一覧（追加・削除・有効/無効）
+          <ul>
+            <li>トリガーキー（「変更」ボタンでキャプチャ）</li>
+            <li>アクション選択</li>
+            <li>通過チェックボックス</li>
+            <li>対象アプリ（実行中アプリから追加、バッジ削除可）</li>
+          </ul>
+        </li>
+      </ul>
+
+      <h3>デフォルトルール</h3>
+      <table class="hotkeys">
+        <thead><tr><th>トリガー</th><th>アクション</th><th>通過</th></tr></thead>
+        <tbody>
+          <tr><td><kbd>Esc</kbd></td><td>直接入力に切り替え</td><td>ON</td></tr>
+        </tbody>
+      </table>
+
+      <h3>必要な権限</h3>
+      <p>アクセシビリティ</p>
+
+      <h3>使用例</h3>
+      <ul>
+        <li>Vim 系エディタで Insert モードを抜けると同時に英数入力へ</li>
+        <li>特定アプリでのみ Esc を IME OFF キーに</li>
+      </ul>
+    </section>
+
+    <section id="menubar" class="doc">
+      <header class="doc__header">
+        <span class="doc__icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="3.5" width="19" height="17" rx="2.5"/><path d="M2.5 8h19"/><path d="M16 5.5h2M19 5.5h.5"/></svg>
+        </span>
+        <div>
+          <h2>メニューバーをどける妖精</h2>
+          <p class="doc__lede">アプリメニューを一時的に隠してステータスアイコン領域を最大化。</p>
+        </div>
+      </header>
+
+      <h3>主な機能</h3>
+      <ul>
+        <li>ステータスバーに常時 ◀／▶ トグルボタン</li>
+        <li>トグル ON: アプリメニューを空に差し替えてアイコン領域を確保</li>
+        <li>トグル OFF: 元のメインメニューを復元、前のアプリへフォーカス返却</li>
+        <li>フォーカスが離れると自動で閉じる</li>
+        <li>ホットキーでもトグル可能</li>
+      </ul>
+
+      <h3>設定項目</h3>
+      <ul>
+        <li>有効トグル</li>
+        <li>状態表示（開き／閉じ）</li>
+        <li>トグルホットキー（デフォルト: <kbd>⌃</kbd><kbd>⌥</kbd><kbd>M</kbd>）</li>
+      </ul>
+
+      <h3>必要な権限</h3>
+      <p>アクセシビリティ</p>
+
+      <h3>使用例</h3>
+      <ul>
+        <li>ステータスアイコンが多くて埋もれているとき、アプリメニューを一時的に消して全アイコンを確認</li>
+      </ul>
+    </section>
+
+    <section id="dock" class="doc">
+      <header class="doc__header">
+        <span class="doc__icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l1.6 4.4L18 9l-4.4 1.6L12 15l-1.6-4.4L6 9l4.4-1.6z"/><path d="M5 16l.8 2.2L8 19l-2.2.8L5 22l-.8-2.2L2 19l2.2-.8z"/><path d="M19 14l.6 1.6L21 16l-1.4.4L19 18l-.4-1.6L17 16l1.6-.4z"/></svg>
+        </span>
+        <div>
+          <h2>Dock を飾り付ける妖精</h2>
+          <p class="doc__lede">Dock アイコン上にウインドウ数・重複識別ドット・応答なし砂時計などを表示。</p>
+        </div>
+      </header>
+
+      <h3>主な機能</h3>
+      <ul>
+        <li><strong>ウインドウ数バッジ</strong> — 2 つ以上ウインドウを持つアプリにカウント表示</li>
+        <li><strong>重複アプリ識別ドット</strong> — 同名アプリ複数起動時、各インスタンスを 8 色のドットで区別</li>
+        <li><strong>Unity プロジェクト名</strong> — Unity Editor のプロジェクト名をオーバーレイ</li>
+        <li><strong>応答なし表示</strong> — フリーズしたアプリにオレンジの砂時計</li>
+        <li>アイコンクリック／ホバーでウインドウピッカーポップオーバー（サムネイル付き）</li>
+        <li>ピッカーからウインドウを直選択して前面化</li>
+        <li>マルチモニターで Dock が別画面に移動した際もオーバーレイが追従</li>
+      </ul>
+
+      <h3>設定項目</h3>
+      <ul>
+        <li>有効トグル</li>
+      </ul>
+
+      <h3>必要な権限</h3>
+      <p>アクセシビリティ／画面収録（サムネイル取得時）</p>
+
+      <h3>使用例</h3>
+      <ul>
+        <li>同アプリ複数インスタンスを Dock 上で識別</li>
+        <li>多ウインドウアプリの Dock からの直接ウインドウ切り替え</li>
+        <li>固まったアプリを一目で把握</li>
+      </ul>
+
+      <div class="callout callout--warn">
+        <p>ウインドウ ID 解決にプライベート API を使用しているため、将来の macOS アップデートで挙動が変わる可能性がある。</p>
+      </div>
+    </section>
+
+    <section id="sleepless" class="doc">
+      <header class="doc__header">
+        <span class="doc__icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 14.5A8 8 0 119.5 4a6.5 6.5 0 0010.5 10.5z"/><path d="M14.5 6.5h4l-4 4h4M16 13h3l-3 3h3" stroke-width="1.4"/></svg>
+        </span>
+        <div>
+          <h2>眠らない妖精</h2>
+          <p class="doc__lede">macOS のスリープを抑止。3 モードを切替可能で終了時に自動復元。</p>
+        </div>
+      </header>
+
+      <h3>抑止モード</h3>
+      <table class="hotkeys">
+        <thead><tr><th>モード</th><th>挙動</th><th>権限</th></tr></thead>
+        <tbody>
+          <tr><td>システムスリープのみ</td><td>本体スリープ抑止（画面は消える）</td><td>不要</td></tr>
+          <tr><td>システム＋ディスプレイ</td><td>本体・ディスプレイ両方を抑止</td><td>不要</td></tr>
+          <tr><td>蓋を閉じても継続</td><td><code>pmset disablesleep 1</code> を適用</td><td>管理者パスワード</td></tr>
+        </tbody>
+      </table>
+
+      <h3>主な機能</h3>
+      <ul>
+        <li>ホットキーでトグル</li>
+        <li>メニューバーメニューの「スリープしない」項目からもトグル</li>
+        <li>アプリ終了時に IOPMAssertion 解放・<code>pmset</code> 復元を保証</li>
+        <li>蓋を閉じモードで管理者パスワードをキャンセルした場合は自動 OFF</li>
+      </ul>
+
+      <h3>設定項目</h3>
+      <ul>
+        <li>有効トグル／状態表示（抑止中／停止）</li>
+        <li>抑止対象モードの選択</li>
+        <li>トグルホットキー（デフォルト未設定）</li>
+      </ul>
+
+      <div class="callout callout--warn">
+        <p>蓋を閉じモードは ON／OFF の切り替えのたびに管理者パスワードが必要。アプリが強制終了された場合は <code>pmset</code> の復元が保証されない。</p>
+      </div>
+    </section>
+
+    <section id="general" class="doc">
+      <header class="doc__header">
+        <span class="doc__icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3.2"/><path d="M19.4 15a7.5 7.5 0 000-6l1.8-1-2-3.4-2 1a7.5 7.5 0 00-5.2-3V.5h-4v2.1a7.5 7.5 0 00-5.2 3l-2-1-2 3.4 1.8 1a7.5 7.5 0 000 6l-1.8 1 2 3.4 2-1a7.5 7.5 0 005.2 3V23.5h4v-2.1a7.5 7.5 0 005.2-3l2 1 2-3.4z"/></svg>
+        </span>
+        <div>
+          <h2>一般</h2>
+          <p class="doc__lede">アプリ全体の起動設定。</p>
+        </div>
+      </header>
+
+      <h3>設定項目</h3>
+      <ul>
+        <li>ログイン時に起動（macOS のログイン項目に登録）</li>
+        <li>バージョン表示</li>
+      </ul>
+    </section>
+
+    <section id="status-icon" class="doc">
+      <h2>メニューバーアイコンの操作</h2>
+      <table class="hotkeys">
+        <thead><tr><th>操作</th><th>動作</th></tr></thead>
+        <tbody>
+          <tr><td>左シングルクリック</td><td>メニュー表示</td></tr>
+          <tr><td>左ダブルクリック</td><td>設定ウインドウを開く</td></tr>
+          <tr><td>右クリック</td><td>メニュー表示</td></tr>
+        </tbody>
+      </table>
+      <p>メニュー項目: バージョン表示／設定…（<kbd>⌘</kbd><kbd>,</kbd>）／スリープしない（トグル）／終了（<kbd>Q</kbd>）</p>
+    </section>
+
+    <section id="files" class="doc">
+      <h2>設定ファイル</h2>
+      <table class="kv">
+        <tbody>
+          <tr><th><code>~/Library/Application Support/FairyOperator/config.json</code></th><td>アプリ全体設定</td></tr>
+          <tr><th><code>~/Library/Application Support/FairyOperator/profiles/&lt;ID&gt;.json</code></th><td>キーボードごとのリマッププロファイル</td></tr>
+          <tr><th><code>~/Library/Application Support/FairyOperator/clipboardHistory.json</code></th><td>クリップボード履歴メタデータ</td></tr>
+          <tr><th><code>~/Library/Application Support/FairyOperator/clipboardImages/</code></th><td>クリップボード画像（PNG）</td></tr>
+          <tr><th><code>~/Library/Application Support/FairyOperator/recentAppOrder.json</code></th><td>アプリ切り替えの使用順</td></tr>
+          <tr><th><code>~/FairyOperator_debug.log</code></th><td>デバッグログ</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <p class="back-to-top"><a href="#overview">↑ 先頭へ</a></p>
+
+  </main>
+</div>
+
+<footer class="footer">
+  <div class="container">
+    <p>© FairyOperator</p>
+    <p><a href="./">ホーム</a> · <a href="https://github.com/piggest/FairyOperator-releases/releases">Releases</a></p>
+  </div>
+</footer>
+
+<script>
+(function () {
+  const links = document.querySelectorAll('.toc a');
+  const map = new Map();
+  links.forEach(a => {
+    const id = a.getAttribute('href').slice(1);
+    const el = document.getElementById(id);
+    if (el) map.set(el, a);
+  });
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      const link = map.get(e.target);
+      if (!link) return;
+      if (e.isIntersecting) {
+        links.forEach(l => l.classList.remove('active'));
+        link.classList.add('active');
+      }
+    });
+  }, { rootMargin: '-30% 0px -65% 0px', threshold: 0 });
+  map.forEach((_, el) => observer.observe(el));
+})();
+</script>
+</body>
+</html>
