@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>機能ガイド — FairyOperator</title>
-<meta name="description" content="FairyOperator のすべての妖精と設定項目、ホットキー、必要な権限をまとめたガイド。">
+<meta name="description" content="FairyOperator の各妖精でできること、設定項目、ホットキー、必要な権限についてまとめたガイドです。">
 <link rel="icon" type="image/png" href="icon.png">
 <link rel="stylesheet" href="style.css">
 <link rel="stylesheet" href="guide.css">
@@ -49,20 +49,21 @@
 
     <section id="overview" class="doc">
       <h1>機能ガイド</h1>
-      <p class="lead">FairyOperator の全機能をひとつのページにまとめた。妖精ごとに「できること」「設定項目」「ホットキー」「必要な権限」を確認できる。</p>
+      <p class="lead">このページでは、FairyOperator に搭載されているすべての機能（妖精）について、できることや設定項目、ホットキー、必要な権限をまとめて紹介します。</p>
 
       <h2>前提条件</h2>
+      <p>FairyOperator を利用する前に、以下の環境と権限を確認してください。</p>
       <table class="kv">
         <tbody>
           <tr><th>対応 macOS</th><td>13.0 (Ventura) 以降</td></tr>
-          <tr><th>起動形態</th><td>メニューバー常駐（Dock アイコンなし）</td></tr>
-          <tr><th>必須権限</th><td>アクセシビリティ／入力モニタリング（ほとんどの妖精で必要）</td></tr>
-          <tr><th>追加権限</th><td>画面収録（ウインドウサムネイル取得時）</td></tr>
+          <tr><th>起動形態</th><td>メニューバーに常駐します。Dock にはアイコンを表示しません。</td></tr>
+          <tr><th>必須権限</th><td>アクセシビリティと入力モニタリング。ほとんどの機能で必要になります。</td></tr>
+          <tr><th>追加権限</th><td>画面収録。ウインドウのサムネイルを取得する際に使用します。</td></tr>
         </tbody>
       </table>
 
       <div class="callout">
-        <p><strong>初回セットアップ</strong> — システム設定 ›「プライバシーとセキュリティ」› <code>アクセシビリティ</code> と <code>入力監視</code> に FairyOperator を追加すると、ほとんどの妖精が動き始める。</p>
+        <p><strong>初回セットアップ</strong>　システム設定の「プライバシーとセキュリティ」を開き、<code>アクセシビリティ</code> と <code>入力監視</code> の項目に FairyOperator を追加してください。これでほとんどの機能が利用できるようになります。</p>
       </div>
     </section>
 
@@ -73,39 +74,39 @@
         </span>
         <div>
           <h2>キー入れ替えの妖精</h2>
-          <p class="doc__lede">接続中のキーボードごとにキーをリマップ。デバイス別プロファイルで管理。</p>
+          <p class="doc__lede">接続しているキーボードごとに、キーの動作を別のキーに置き換えられる機能です。デバイスごとにプロファイルを保存し、自動で切り替わります。</p>
         </div>
       </header>
 
-      <h3>主な機能</h3>
+      <h3>できること</h3>
       <ul>
-        <li>キーボードデバイスごとに独立したマッピングプロファイル</li>
-        <li>通常キー → 通常キーのリマップ（CGEvent タップ）</li>
-        <li>修飾キー同士のリマップ（例: CapsLock → Control）</li>
-        <li>CapsLock → 通常キーのリマップ</li>
-        <li>HID-only キー（CGEvent に現れない特殊キー）のリマップ</li>
-        <li>未接続キーボードのプロファイル保持と再接続時の自動復元</li>
-        <li>最後に押されたキーコードのリアルタイム表示</li>
+        <li>キーボードデバイスごとに独立したマッピングプロファイルを作成・保存できます。</li>
+        <li>通常キー同士のリマップ（CGEvent タップを使用）に対応しています。</li>
+        <li>修飾キー同士のリマップ（例: CapsLock を Control に変更）にも対応しています。</li>
+        <li>CapsLock を通常キーに割り当てることもできます。</li>
+        <li>HID-only キー（通常のイベントには現れない特殊キー）もリマップできます。</li>
+        <li>未接続のキーボードに対するプロファイルも保持され、再接続すると自動的に復元されます。</li>
+        <li>最後に押されたキーコードを設定画面でリアルタイムに確認できます。</li>
       </ul>
 
       <h3>設定項目</h3>
       <ul>
-        <li>有効トグル（全体 ON/OFF）</li>
-        <li>キーボード一覧（接続中・未接続を区別。右クリックでプロファイル削除）</li>
-        <li>マッピングエディタ（from → to のペア、ペアごとの有効/無効、プロファイル名編集）</li>
+        <li>機能全体の有効／無効トグル。</li>
+        <li>キーボード一覧。接続中・未接続を区別して表示し、右クリックでプロファイルを削除できます。</li>
+        <li>マッピングエディタ。「変更前のキー → 変更後のキー」の組み合わせを追加・編集し、ペアごとに有効／無効を切り替えられます。プロファイル名の変更も可能です。</li>
       </ul>
 
       <h3>必要な権限</h3>
-      <p>アクセシビリティ／入力モニタリング</p>
+      <p>アクセシビリティと入力モニタリングが必要です。</p>
 
       <h3>使用例</h3>
       <ul>
-        <li>日本語キーボードの「英数」「かな」を Escape など他キーに割り当てる</li>
-        <li>CapsLock を Control にする</li>
+        <li>日本語キーボードの「英数」「かな」キーを、Escape など別のキーに割り当てて活用する。</li>
+        <li>CapsLock を Control に変更して、エディタ操作を快適にする。</li>
       </ul>
 
       <div class="callout callout--note">
-        <p>合成イベントには内部マーカー <code>FAIRY</code> を付加して二重リマップを防止している。修飾キー同士のリマップは macOS の HID プロパティを利用するため、アプリ終了後に一時的に残ることがある。</p>
+        <p>合成イベントには内部マーカー <code>FAIRY</code> を付加し、二重リマップを防止しています。修飾キー同士のリマップは macOS の HID プロパティを利用するため、アプリ終了後も一時的に設定が残ることがあります。</p>
       </div>
     </section>
 
@@ -116,25 +117,25 @@
         </span>
         <div>
           <h2>アプリ切り替えの妖精</h2>
-          <p class="doc__lede">ホットキーで最近使用順のアプリ一覧を呼び出す。Cmd+Tab の代替。</p>
+          <p class="doc__lede">ホットキーを押すと、最近使用したアプリの一覧をパネル表示し、すばやく切り替えられる機能です。標準の Cmd+Tab に近い操作感で、より柔軟に使えます。</p>
         </div>
       </header>
 
-      <h3>主な機能</h3>
+      <h3>できること</h3>
       <ul>
-        <li>最近使用順に並んだアプリ一覧パネル（最大 7 列グリッド）</li>
-        <li>ホットキー押し続けで前後選択、離した瞬間に確定</li>
-        <li>Escape でキャンセル、マウスホバー＋クリックでも確定</li>
-        <li>右クリックでウインドウピッカー（サムネイル付き、複数ウインドウから個別選択）</li>
-        <li>最小化ウインドウの自動復元</li>
-        <li>Unity Editor はプロジェクト固有アイコンを自動表示</li>
-        <li>使用順を再起動後も保持</li>
+        <li>最近使用順に並んだアプリ一覧を、最大 7 列のグリッドで表示します。</li>
+        <li>ホットキーを押し続けて前後に選択を移動し、キーを離した瞬間に確定します。</li>
+        <li>Escape キーでキャンセル、マウスホバーとクリックでも選択・確定が可能です。</li>
+        <li>右クリックでウインドウピッカーを開き、サムネイル付きで複数ウインドウから選択できます。</li>
+        <li>最小化されているウインドウを自動で復元します。</li>
+        <li>Unity Editor を切り替える際は、プロジェクト固有のアイコンを自動的に表示します。</li>
+        <li>使用順は再起動後も保持されます。</li>
       </ul>
 
       <h3>設定項目</h3>
       <ul>
-        <li>有効トグル</li>
-        <li>進む／戻るキーバインド</li>
+        <li>機能全体の有効／無効トグル。</li>
+        <li>「進む」「戻る」のキーバインド。</li>
       </ul>
 
       <h3>ホットキー</h3>
@@ -144,17 +145,17 @@
           <tr><td>進む</td><td><kbd>⌥</kbd><kbd>Tab</kbd></td></tr>
           <tr><td>戻る</td><td><kbd>⌥</kbd><kbd>⇧</kbd><kbd>Tab</kbd></td></tr>
           <tr><td>キャンセル</td><td><kbd>Esc</kbd></td></tr>
-          <tr><td>ウインドウピッカー</td><td>右クリック</td></tr>
+          <tr><td>ウインドウピッカーを開く</td><td>右クリック</td></tr>
         </tbody>
       </table>
 
       <h3>必要な権限</h3>
-      <p>アクセシビリティ（ウインドウ復元）／画面収録（ウインドウサムネイル）</p>
+      <p>アクセシビリティ（最小化ウインドウの復元など）と画面収録（サムネイル表示）が必要です。</p>
 
       <h3>使用例</h3>
       <ul>
-        <li>Cmd+Tab より少ない操作でアプリ切り替え</li>
-        <li>多ウインドウアプリの特定ウインドウを直指定</li>
+        <li>Cmd+Tab よりも少ない手数でアプリを切り替える。</li>
+        <li>複数のウインドウを持つアプリで、特定のウインドウを直接選んで切り替える。</li>
       </ul>
     </section>
 
@@ -165,50 +166,50 @@
         </span>
         <div>
           <h2>クリップボードを集める妖精</h2>
-          <p class="doc__lede">コピー履歴を自動蓄積。ホットキーから過去のテキスト・画像を貼り付け。</p>
+          <p class="doc__lede">コピー操作を自動で検出して履歴に蓄積し、ホットキーから過去にコピーしたテキストや画像を呼び出して貼り付けられる機能です。</p>
         </div>
       </header>
 
-      <h3>主な機能</h3>
+      <h3>できること</h3>
       <ul>
-        <li>0.5 秒ポーリングでクリップボード変更を検出</li>
-        <li>テキスト／画像（PNG・TIFF）の両方を保持</li>
-        <li>パスワードマネージャー等の機密タイプ（<code>org.nspasteboard.ConcealedType</code>）は自動除外</li>
-        <li>ピン留めで先頭固定、自動削除対象から除外</li>
-        <li>インクリメンタル検索</li>
-        <li>数字キー <kbd>1</kbd>〜<kbd>9</kbd> で直接選択</li>
-        <li>確定後は前のアプリに自動復帰して <kbd>⌘V</kbd> 送出</li>
-        <li>選んだアイテムは先頭に再配置（ピン留め直後）</li>
+        <li>0.5 秒間隔でクリップボードの変化を監視し、変更があれば履歴に追加します。</li>
+        <li>テキストと画像（PNG・TIFF）の両方を保存できます。</li>
+        <li>パスワードマネージャーなどが付与する機密タイプ（<code>org.nspasteboard.ConcealedType</code>）は自動的に保存対象から除外します。</li>
+        <li>ピン留め機能でアイテムを先頭に固定でき、自動削除の対象から外せます。</li>
+        <li>インクリメンタル検索で履歴を素早く絞り込めます。</li>
+        <li>数字キー <kbd>1</kbd>〜<kbd>9</kbd> を押すと、対応する番号のアイテムを直接選択できます。</li>
+        <li>選択を確定すると、もとのアプリに自動で戻り、<kbd>⌘V</kbd> を送出して貼り付けます。</li>
+        <li>使用したアイテムは履歴の先頭（ピン留めアイテムの直後）に自動で並び替えられます。</li>
       </ul>
 
       <h3>設定項目</h3>
       <ul>
-        <li>有効トグル</li>
-        <li>呼び出しホットキー（デフォルト: <kbd>⌃</kbd><kbd>V</kbd>）</li>
-        <li>検索ホットキー（デフォルト: <kbd>⌘</kbd><kbd>F</kbd>）</li>
-        <li>最大保存件数（20 / 50 / 100 / 200。デフォルト 50）</li>
-        <li>履歴クリアボタン</li>
+        <li>機能全体の有効／無効トグル。</li>
+        <li>呼び出しホットキー（デフォルト: <kbd>⌃</kbd><kbd>V</kbd>）。</li>
+        <li>検索ホットキー（デフォルト: <kbd>⌘</kbd><kbd>F</kbd>）。</li>
+        <li>最大保存件数（20 / 50 / 100 / 200 から選択。デフォルトは 50）。</li>
+        <li>履歴をクリアするボタン。</li>
       </ul>
 
-      <h3>パネル内操作</h3>
+      <h3>パネル内のキー操作</h3>
       <table class="hotkeys">
         <thead><tr><th>キー</th><th>動作</th></tr></thead>
         <tbody>
-          <tr><td><kbd>↓</kbd> / <kbd>Tab</kbd></td><td>次へ</td></tr>
-          <tr><td><kbd>↑</kbd></td><td>前へ</td></tr>
-          <tr><td><kbd>Return</kbd></td><td>選択を貼り付け</td></tr>
-          <tr><td><kbd>Delete</kbd></td><td>選択アイテムを削除</td></tr>
-          <tr><td><kbd>⌘</kbd><kbd>Delete</kbd></td><td>履歴を全クリア</td></tr>
-          <tr><td><kbd>Esc</kbd></td><td>キャンセル</td></tr>
-          <tr><td><kbd>1</kbd>〜<kbd>9</kbd></td><td>番号で直接選択</td></tr>
+          <tr><td><kbd>↓</kbd> / <kbd>Tab</kbd></td><td>次の項目に移動します。</td></tr>
+          <tr><td><kbd>↑</kbd></td><td>前の項目に移動します。</td></tr>
+          <tr><td><kbd>Return</kbd></td><td>選択中のアイテムを貼り付けます。</td></tr>
+          <tr><td><kbd>Delete</kbd></td><td>選択中のアイテムを削除します。</td></tr>
+          <tr><td><kbd>⌘</kbd><kbd>Delete</kbd></td><td>履歴をすべて削除します。</td></tr>
+          <tr><td><kbd>Esc</kbd></td><td>パネルを閉じます。</td></tr>
+          <tr><td><kbd>1</kbd>〜<kbd>9</kbd></td><td>番号で直接選択します。</td></tr>
         </tbody>
       </table>
 
       <h3>必要な権限</h3>
-      <p>アクセシビリティ（<kbd>⌘V</kbd> 送出のため）</p>
+      <p>アクセシビリティが必要です（<kbd>⌘V</kbd> を送出するため）。</p>
 
       <div class="callout callout--note">
-        <p>画像は <code>~/Library/Application Support/FairyOperator/clipboardImages/</code> に PNG として保存される。</p>
+        <p>履歴中の画像は <code>~/Library/Application Support/FairyOperator/clipboardImages/</code> 以下に PNG ファイルとして保存されます。</p>
       </div>
     </section>
 
@@ -219,37 +220,37 @@
         </span>
         <div>
           <h2>ウインドウ操作の妖精</h2>
-          <p class="doc__lede">ホットキー一発で最前面ウインドウを左右上下半分・最大化・別モニターへ。</p>
+          <p class="doc__lede">最前面のウインドウをホットキー一つで画面の左右上下半分や最大化、別モニターへの移動を行える機能です。</p>
         </div>
       </header>
 
-      <h3>主な機能</h3>
+      <h3>できること</h3>
       <ul>
-        <li>左半分・右半分・上半分・下半分・最大化</li>
-        <li>別スクリーンへの移動（サイズ比率を維持）</li>
-        <li>マルチモニター対応（ウインドウのあるスクリーンを自動判定）</li>
+        <li>ウインドウを左半分・右半分・上半分・下半分・最大化のいずれかに配置できます。</li>
+        <li>サイズ比率を維持したまま、別のスクリーンへ移動できます。</li>
+        <li>マルチモニター環境では、ウインドウが現在表示されているスクリーンを自動で判定します。</li>
       </ul>
 
       <h3>ホットキー（デフォルト）</h3>
       <table class="hotkeys">
         <thead><tr><th>操作</th><th>キー</th></tr></thead>
         <tbody>
-          <tr><td>左半分</td><td><kbd>⌘</kbd><kbd>⌃</kbd><kbd>←</kbd></td></tr>
-          <tr><td>右半分</td><td><kbd>⌘</kbd><kbd>⌃</kbd><kbd>→</kbd></td></tr>
-          <tr><td>上半分</td><td><kbd>⌘</kbd><kbd>⌃</kbd><kbd>⇧</kbd><kbd>↑</kbd></td></tr>
-          <tr><td>下半分</td><td><kbd>⌃</kbd><kbd>⌥</kbd><kbd>↓</kbd></td></tr>
+          <tr><td>左半分に配置</td><td><kbd>⌘</kbd><kbd>⌃</kbd><kbd>←</kbd></td></tr>
+          <tr><td>右半分に配置</td><td><kbd>⌘</kbd><kbd>⌃</kbd><kbd>→</kbd></td></tr>
+          <tr><td>上半分に配置</td><td><kbd>⌘</kbd><kbd>⌃</kbd><kbd>⇧</kbd><kbd>↑</kbd></td></tr>
+          <tr><td>下半分に配置</td><td><kbd>⌃</kbd><kbd>⌥</kbd><kbd>↓</kbd></td></tr>
           <tr><td>最大化</td><td><kbd>⌃</kbd><kbd>Return</kbd></td></tr>
           <tr><td>別画面に移動</td><td><kbd>⌃</kbd><kbd>Space</kbd></td></tr>
         </tbody>
       </table>
 
       <h3>必要な権限</h3>
-      <p>アクセシビリティ</p>
+      <p>アクセシビリティが必要です。</p>
 
       <h3>使用例</h3>
       <ul>
-        <li>マウスドラッグせず、キーで素早くウインドウを左右分割配置</li>
-        <li>外部モニターと内蔵モニター間の瞬時移動</li>
+        <li>マウスでドラッグせずに、キーボードだけで素早く左右分割の配置にする。</li>
+        <li>外部モニターと内蔵モニターの間で、ウインドウを瞬時に移動する。</li>
       </ul>
     </section>
 
@@ -260,34 +261,34 @@
         </span>
         <div>
           <h2>IME 操作の妖精</h2>
-          <p class="doc__lede">指定キーに IME 切り替えアクションを割り当てるルールエンジン。</p>
+          <p class="doc__lede">指定したキーに IME（日本語入力）の切り替え動作を割り当てられる、ルールベースのキーアクションエンジンです。</p>
         </div>
       </header>
 
-      <h3>主な機能</h3>
+      <h3>できること</h3>
       <ul>
-        <li>複数ルールの登録・並べ替え・削除</li>
-        <li>ルールごとの有効／無効</li>
-        <li>トリガーキー（修飾キー付きコンボ）</li>
-        <li>アクション 3 種：直接入力に切り替え／日本語入力に切り替え／トグル</li>
-        <li>「通過」設定（元のキー動作も維持）</li>
-        <li>対象アプリを bundleID で絞り込み（空なら全アプリ）</li>
+        <li>複数のルールを登録し、自由に並べ替えや削除ができます。</li>
+        <li>ルールごとに有効／無効を切り替えられます。</li>
+        <li>修飾キーを組み合わせたトリガーキーを設定できます。</li>
+        <li>アクションは「直接入力に切り替え」「日本語入力に切り替え」「トグル」の 3 種類から選べます。</li>
+        <li>「通過」を有効にすると、トリガーキー本来の動作も同時に実行されます。たとえば Escape キーで IME を切り替えつつ、Escape の本来の動作も維持できます。</li>
+        <li>対象アプリを bundleID で絞り込めます。指定が空の場合はすべてのアプリで動作します。</li>
       </ul>
 
       <h3>設定項目</h3>
       <ul>
-        <li>有効トグル</li>
-        <li>IME ルール一覧（追加・削除・有効/無効）
+        <li>機能全体の有効／無効トグル。</li>
+        <li>IME ルールの一覧。各ルールについて以下を設定できます。
           <ul>
-            <li>トリガーキー（「変更」ボタンでキャプチャ）</li>
-            <li>アクション選択</li>
-            <li>通過チェックボックス</li>
-            <li>対象アプリ（実行中アプリから追加、バッジ削除可）</li>
+            <li>トリガーキー（「変更」ボタンを押してキャプチャします）。</li>
+            <li>アクションの選択。</li>
+            <li>「通過」のチェックボックス。</li>
+            <li>対象アプリ（実行中アプリから追加でき、バッジ表示で削除できます）。</li>
           </ul>
         </li>
       </ul>
 
-      <h3>デフォルトルール</h3>
+      <h3>デフォルトのルール</h3>
       <table class="hotkeys">
         <thead><tr><th>トリガー</th><th>アクション</th><th>通過</th></tr></thead>
         <tbody>
@@ -296,12 +297,12 @@
       </table>
 
       <h3>必要な権限</h3>
-      <p>アクセシビリティ</p>
+      <p>アクセシビリティが必要です。</p>
 
       <h3>使用例</h3>
       <ul>
-        <li>Vim 系エディタで Insert モードを抜けると同時に英数入力へ</li>
-        <li>特定アプリでのみ Esc を IME OFF キーに</li>
+        <li>Vim 系エディタで Insert モードを抜けると同時に、英数入力に自動で切り替える。</li>
+        <li>特定のアプリでだけ Escape キーを「IME を OFF にするキー」として動作させる。</li>
       </ul>
     </section>
 
@@ -312,32 +313,32 @@
         </span>
         <div>
           <h2>メニューバーをどける妖精</h2>
-          <p class="doc__lede">アプリメニューを一時的に隠してステータスアイコン領域を最大化。</p>
+          <p class="doc__lede">アプリのメニューを一時的に非表示にして、メニューバー上のステータスアイコンの表示領域を広げる機能です。</p>
         </div>
       </header>
 
-      <h3>主な機能</h3>
+      <h3>できること</h3>
       <ul>
-        <li>ステータスバーに常時 ◀／▶ トグルボタン</li>
-        <li>トグル ON: アプリメニューを空に差し替えてアイコン領域を確保</li>
-        <li>トグル OFF: 元のメインメニューを復元、前のアプリへフォーカス返却</li>
-        <li>フォーカスが離れると自動で閉じる</li>
-        <li>ホットキーでもトグル可能</li>
+        <li>メニューバーに常にトグル用の矢印アイコン（◀／▶）を表示します。</li>
+        <li>トグルを ON にすると、アプリメニューを空のメニューに差し替え、ステータスアイコンの表示領域を確保します。</li>
+        <li>トグルを OFF にすると、もとのメインメニューを復元し、直前のアプリにフォーカスを戻します。</li>
+        <li>FairyOperator からフォーカスが離れると、メニューは自動的にもとの状態に戻ります。</li>
+        <li>ホットキーからもトグル操作が行えます。</li>
       </ul>
 
       <h3>設定項目</h3>
       <ul>
-        <li>有効トグル</li>
-        <li>状態表示（開き／閉じ）</li>
-        <li>トグルホットキー（デフォルト: <kbd>⌃</kbd><kbd>⌥</kbd><kbd>M</kbd>）</li>
+        <li>機能全体の有効／無効トグル。</li>
+        <li>現在の状態表示（「開き」または「閉じ」）。</li>
+        <li>トグル用ホットキー（デフォルト: <kbd>⌃</kbd><kbd>⌥</kbd><kbd>M</kbd>）。</li>
       </ul>
 
       <h3>必要な権限</h3>
-      <p>アクセシビリティ</p>
+      <p>アクセシビリティが必要です。</p>
 
       <h3>使用例</h3>
       <ul>
-        <li>ステータスアイコンが多くて埋もれているとき、アプリメニューを一時的に消して全アイコンを確認</li>
+        <li>ステータスアイコンが多くて隠れてしまっているとき、アプリメニューを一時的に消してすべて表示する。</li>
       </ul>
     </section>
 
@@ -348,38 +349,38 @@
         </span>
         <div>
           <h2>Dock を飾り付ける妖精</h2>
-          <p class="doc__lede">Dock アイコン上にウインドウ数・重複識別ドット・応答なし砂時計などを表示。</p>
+          <p class="doc__lede">Dock のアイコン上にウインドウ数や応答状態などの情報をオーバーレイ表示し、Dock からの操作を強化する機能です。</p>
         </div>
       </header>
 
-      <h3>主な機能</h3>
+      <h3>できること</h3>
       <ul>
-        <li><strong>ウインドウ数バッジ</strong> — 2 つ以上ウインドウを持つアプリにカウント表示</li>
-        <li><strong>重複アプリ識別ドット</strong> — 同名アプリ複数起動時、各インスタンスを 8 色のドットで区別</li>
-        <li><strong>Unity プロジェクト名</strong> — Unity Editor のプロジェクト名をオーバーレイ</li>
-        <li><strong>応答なし表示</strong> — フリーズしたアプリにオレンジの砂時計</li>
-        <li>アイコンクリック／ホバーでウインドウピッカーポップオーバー（サムネイル付き）</li>
-        <li>ピッカーからウインドウを直選択して前面化</li>
-        <li>マルチモニターで Dock が別画面に移動した際もオーバーレイが追従</li>
+        <li><strong>ウインドウ数バッジ</strong>　2 つ以上のウインドウを持つアプリのアイコン上に、ウインドウ数のバッジを表示します。</li>
+        <li><strong>重複アプリの識別ドット</strong>　同名のアプリを複数起動している場合、それぞれのインスタンスを 8 色のドットで区別して表示します。</li>
+        <li><strong>Unity プロジェクト名</strong>　Unity Editor のアイコン上に、現在開いているプロジェクト名を表示します。</li>
+        <li><strong>応答なし表示</strong>　応答が止まっているアプリにオレンジの砂時計アイコンを表示します。</li>
+        <li>Dock アイコンをクリックまたはホバーすると、サムネイル付きのウインドウピッカーをポップオーバーで表示します。</li>
+        <li>ウインドウピッカーから直接ウインドウを選択して、最前面に表示できます。</li>
+        <li>マルチモニター環境で Dock が別のスクリーンに移動した場合も、オーバーレイが追従します。</li>
       </ul>
 
       <h3>設定項目</h3>
       <ul>
-        <li>有効トグル</li>
+        <li>機能全体の有効／無効トグル。</li>
       </ul>
 
       <h3>必要な権限</h3>
-      <p>アクセシビリティ／画面収録（サムネイル取得時）</p>
+      <p>アクセシビリティと画面収録（サムネイル取得時）が必要です。</p>
 
       <h3>使用例</h3>
       <ul>
-        <li>同アプリ複数インスタンスを Dock 上で識別</li>
-        <li>多ウインドウアプリの Dock からの直接ウインドウ切り替え</li>
-        <li>固まったアプリを一目で把握</li>
+        <li>同じアプリを複数インスタンス起動している際に、Dock 上でそれぞれを識別する。</li>
+        <li>多数のウインドウを持つアプリで、Dock から目的のウインドウへ直接切り替える。</li>
+        <li>応答が止まったアプリを Dock 上ですぐに把握する。</li>
       </ul>
 
       <div class="callout callout--warn">
-        <p>ウインドウ ID 解決にプライベート API を使用しているため、将来の macOS アップデートで挙動が変わる可能性がある。</p>
+        <p>ウインドウ ID の取得にプライベート API を使用しているため、将来の macOS アップデートにより挙動が変化する可能性があります。</p>
       </div>
     </section>
 
@@ -390,37 +391,37 @@
         </span>
         <div>
           <h2>眠らない妖精</h2>
-          <p class="doc__lede">macOS のスリープを抑止。3 モードを切替可能で終了時に自動復元。</p>
+          <p class="doc__lede">macOS のスリープを抑止する機能です。3 種類のモードから選択でき、アプリ終了時には自動的に元の状態に戻します。</p>
         </div>
       </header>
 
       <h3>抑止モード</h3>
       <table class="hotkeys">
-        <thead><tr><th>モード</th><th>挙動</th><th>権限</th></tr></thead>
+        <thead><tr><th>モード</th><th>動作</th><th>権限</th></tr></thead>
         <tbody>
-          <tr><td>システムスリープのみ</td><td>本体スリープ抑止（画面は消える）</td><td>不要</td></tr>
-          <tr><td>システム＋ディスプレイ</td><td>本体・ディスプレイ両方を抑止</td><td>不要</td></tr>
-          <tr><td>蓋を閉じても継続</td><td><code>pmset disablesleep 1</code> を適用</td><td>管理者パスワード</td></tr>
+          <tr><td>システムスリープのみ</td><td>本体のスリープを防ぎます。ディスプレイは消灯することがあります。</td><td>不要</td></tr>
+          <tr><td>システム＋ディスプレイ</td><td>本体とディスプレイの両方のスリープを防ぎます。</td><td>不要</td></tr>
+          <tr><td>蓋を閉じても継続</td><td><code>pmset disablesleep 1</code> を適用し、ノートブックの蓋を閉じてもスリープしないようにします。</td><td>管理者パスワード</td></tr>
         </tbody>
       </table>
 
-      <h3>主な機能</h3>
+      <h3>できること</h3>
       <ul>
-        <li>ホットキーでトグル</li>
-        <li>メニューバーメニューの「スリープしない」項目からもトグル</li>
-        <li>アプリ終了時に IOPMAssertion 解放・<code>pmset</code> 復元を保証</li>
-        <li>蓋を閉じモードで管理者パスワードをキャンセルした場合は自動 OFF</li>
+        <li>ホットキーから抑止状態をトグルできます。</li>
+        <li>メニューバーアイコンのメニューにある「スリープしない」項目からもトグルできます。</li>
+        <li>アプリ終了時に IOPMAssertion の解放と <code>pmset</code> の復元を必ず実行します。</li>
+        <li>「蓋を閉じても継続」モードで管理者パスワードの入力をキャンセルした場合は、自動的に OFF へ戻します。</li>
       </ul>
 
       <h3>設定項目</h3>
       <ul>
-        <li>有効トグル／状態表示（抑止中／停止）</li>
-        <li>抑止対象モードの選択</li>
-        <li>トグルホットキー（デフォルト未設定）</li>
+        <li>機能全体の有効／無効トグル。現在の状態（「抑止中」または「停止」）を表示します。</li>
+        <li>抑止対象モードの選択。</li>
+        <li>トグル用ホットキー（デフォルトでは未設定です）。</li>
       </ul>
 
       <div class="callout callout--warn">
-        <p>蓋を閉じモードは ON／OFF の切り替えのたびに管理者パスワードが必要。アプリが強制終了された場合は <code>pmset</code> の復元が保証されない。</p>
+        <p>「蓋を閉じても継続」モードは、ON／OFF を切り替えるたびに管理者パスワードの入力が必要になります。アプリが強制終了された場合は、<code>pmset</code> の復元が保証されない点にご注意ください。</p>
       </div>
     </section>
 
@@ -431,45 +432,47 @@
         </span>
         <div>
           <h2>一般</h2>
-          <p class="doc__lede">アプリ全体の起動設定。</p>
+          <p class="doc__lede">アプリ全体に関わる設定をまとめたタブです。</p>
         </div>
       </header>
 
       <h3>設定項目</h3>
       <ul>
-        <li>ログイン時に起動（macOS のログイン項目に登録）</li>
-        <li>バージョン表示</li>
+        <li>「ログイン時に起動」トグル。macOS のログイン項目に FairyOperator を登録します。</li>
+        <li>現在のバージョンを表示します。</li>
       </ul>
     </section>
 
     <section id="status-icon" class="doc">
       <h2>メニューバーアイコンの操作</h2>
+      <p>メニューバー上のアイコンには、以下のクリック操作が割り当てられています。</p>
       <table class="hotkeys">
         <thead><tr><th>操作</th><th>動作</th></tr></thead>
         <tbody>
-          <tr><td>左シングルクリック</td><td>メニュー表示</td></tr>
-          <tr><td>左ダブルクリック</td><td>設定ウインドウを開く</td></tr>
-          <tr><td>右クリック</td><td>メニュー表示</td></tr>
+          <tr><td>左シングルクリック</td><td>メニューを表示します。</td></tr>
+          <tr><td>左ダブルクリック</td><td>設定ウインドウを開きます。</td></tr>
+          <tr><td>右クリック</td><td>メニューを表示します。</td></tr>
         </tbody>
       </table>
-      <p>メニュー項目: バージョン表示／設定…（<kbd>⌘</kbd><kbd>,</kbd>）／スリープしない（トグル）／終了（<kbd>Q</kbd>）</p>
+      <p>表示されるメニュー項目は、バージョン情報、設定…（<kbd>⌘</kbd><kbd>,</kbd>）、スリープしない（トグル）、終了（<kbd>Q</kbd>）です。</p>
     </section>
 
     <section id="files" class="doc">
-      <h2>設定ファイル</h2>
+      <h2>設定ファイルとログ</h2>
+      <p>FairyOperator が使用するファイルの一覧です。設定の引っ越しや、トラブルシューティング時に参照してください。</p>
       <table class="kv">
         <tbody>
-          <tr><th><code>~/Library/Application Support/FairyOperator/config.json</code></th><td>アプリ全体設定</td></tr>
-          <tr><th><code>~/Library/Application Support/FairyOperator/profiles/&lt;ID&gt;.json</code></th><td>キーボードごとのリマッププロファイル</td></tr>
-          <tr><th><code>~/Library/Application Support/FairyOperator/clipboardHistory.json</code></th><td>クリップボード履歴メタデータ</td></tr>
-          <tr><th><code>~/Library/Application Support/FairyOperator/clipboardImages/</code></th><td>クリップボード画像（PNG）</td></tr>
-          <tr><th><code>~/Library/Application Support/FairyOperator/recentAppOrder.json</code></th><td>アプリ切り替えの使用順</td></tr>
-          <tr><th><code>~/FairyOperator_debug.log</code></th><td>デバッグログ</td></tr>
+          <tr><th><code>~/Library/Application Support/FairyOperator/config.json</code></th><td>アプリ全体の設定をまとめた JSON ファイルです。</td></tr>
+          <tr><th><code>~/Library/Application Support/FairyOperator/profiles/&lt;ID&gt;.json</code></th><td>キーボードごとのリマップ・プロファイルです。</td></tr>
+          <tr><th><code>~/Library/Application Support/FairyOperator/clipboardHistory.json</code></th><td>クリップボード履歴のメタデータです。</td></tr>
+          <tr><th><code>~/Library/Application Support/FairyOperator/clipboardImages/</code></th><td>クリップボードに保存された画像（PNG）の保存先です。</td></tr>
+          <tr><th><code>~/Library/Application Support/FairyOperator/recentAppOrder.json</code></th><td>アプリ切り替えの使用順を記録したファイルです。</td></tr>
+          <tr><th><code>~/FairyOperator_debug.log</code></th><td>動作ログの出力先です。トラブルシューティングに利用できます。</td></tr>
         </tbody>
       </table>
     </section>
 
-    <p class="back-to-top"><a href="#overview">↑ 先頭へ</a></p>
+    <p class="back-to-top"><a href="#overview">↑ 先頭へ戻る</a></p>
 
   </main>
 </div>
