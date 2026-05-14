@@ -115,6 +115,18 @@ a:hover { text-decoration: underline; }
   color: var(--fg-muted);
 }
 
+.lang-switch {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  margin: 0;
+  font-size: 13px;
+  color: var(--fg-muted);
+}
+.lang-switch a { color: var(--fg-muted); text-decoration: none; }
+.lang-switch a[aria-current="page"] { color: var(--fg); font-weight: 600; }
+.lang-switch a:hover { color: var(--fg); }
+
 /* Sections */
 .section__title {
   font-size: clamp(24px, 3.5vw, 32px);

@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Feature Guide — FairyOperator</title>
+<meta name="description" content="A guide to every fairy in FairyOperator — what it does, settings, hotkeys, and required permissions.">
+<link rel="icon" type="image/png" href="../icon.png">
+<link rel="stylesheet" href="../style.css">
+<link rel="stylesheet" href="../guide.css">
+</head>
+<body class="guide">
+
+<header class="topbar">
+  <div class="topbar__inner">
+    <a class="topbar__brand" href="./">
+      <img src="../icon-256.png" alt="" width="28" height="28">
+      <span>FairyOperator</span>
+    </a>
+    <nav class="topbar__nav">
+      <a href="./">Home</a>
+      <a href="https://github.com/piggest/FairyOperator-releases/releases/latest">Download</a>
+      <a href="../guide.html">日本語</a>
+    </nav>
+  </div>
+</header>
+
+<div class="layout">
+  <aside class="sidebar">
+    <div class="sidebar__inner">
+      <p class="sidebar__title">Contents</p>
+      <nav class="toc">
+        <a href="#overview">Introduction</a>
+        <a href="#keyboard">Key Remap</a>
+        <a href="#app-switcher">App Switcher</a>
+        <a href="#clipboard">Clipboard</a>
+        <a href="#window">Window Manager</a>
+        <a href="#ime">IME Control</a>
+        <a href="#menubar">Menu Bar</a>
+        <a href="#dock">Dock Extensions</a>
+        <a href="#sleepless">Sleepless</a>
+        <a href="#general">General</a>
+        <a href="#status-icon">Status Bar Icon</a>
+        <a href="#files">Files</a>
+      </nav>
+    </div>
+  </aside>
+
+  <main class="content">
+
+    <section id="overview" class="doc">
+      <h1>Feature Guide</h1>
+      <p class="lead">This page covers every feature (fairy) in FairyOperator — what it does, settings, hotkeys, and required permissions.</p>
+
+      <h2>Requirements</h2>
+      <p>Check the following environment and permissions before using FairyOperator.</p>
+      <table class="kv">
+        <tbody>
+          <tr><th>Supported macOS</th><td>13.0 (Ventura) or later</td></tr>
+          <tr><th>Launch mode</th><td>Lives in the menu bar. No Dock icon is shown.</td></tr>
+          <tr><th>Required permissions</th><td>Accessibility and Input Monitoring. Needed by most features.</td></tr>
+          <tr><th>Optional permissions</th><td>Screen Recording. Used when capturing window thumbnails.</td></tr>
+        </tbody>
+      </table>
+
+      <div class="callout">
+        <p><strong>First-time setup</strong>　Open System Settings &rarr; Privacy &amp; Security, and add FairyOperator to <code>Accessibility</code> and <code>Input Monitoring</code>. Most features become available after that.</p>
+      </div>
+    </section>
+
+    <section id="keyboard" class="doc">
+      <header class="doc__header">
+        <span class="doc__icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="6" width="19" height="12" rx="2.5"/><path d="M6 10h.01M9 10h.01M12 10h.01M15 10h.01M18 10h.01M7 14h10"/></svg>
+        </span>
+        <div>
+          <h2>Key Remap Fairy</h2>
+          <p class="doc__lede">Remap the behavior of any key on a per-keyboard basis. Profiles are saved per device and switched automatically.</p>
+        </div>
+      </header>
+
+      <h3>What it can do</h3>
+      <ul>
+        <li>Create and save an independent mapping profile per keyboard device.</li>
+        <li>Remap regular keys to other keys (via CGEvent tap).</li>
+        <li>Remap between modifier keys (e.g. CapsLock &rarr; Control).</li>
+        <li>Assign CapsLock to a regular key.</li>
+        <li>Remap HID-only keys that never surface as normal events.</li>
+        <li>Profiles for disconnected keyboards are kept and restored automatically on reconnect.</li>
+        <li>The most recently pressed key code is shown in real time in settings.</li>
+      </ul>
+
+      <h3>Settings</h3>
+      <ul>
+        <li>Master enable/disable toggle.</li>
+        <li>Keyboard list — connected and disconnected are shown separately; right-click to delete a profile.</li>
+        <li>Mapping editor — add/edit "from &rarr; to" pairs, toggle each one, and rename profiles.</li>
+      </ul>
+
+      <h3>Required permissions</h3>
+      <p>Accessibility and Input Monitoring.</p>
+
+      <h3>Examples</h3>
+      <ul>
+        <li>Reassign the JIS "Eisu" / "Kana" keys to Escape or another key.</li>
+        <li>Change CapsLock to Control for more comfortable editor navigation.</li>
+      </ul>
+
+      <div class="callout callout--note">
+        <p>Synthesized events carry an internal marker (<code>FAIRY</code>) to prevent double-remapping. Modifier-vs-modifier remapping relies on macOS HID properties and may briefly persist after the app quits.</p>
+      </div>
+    </section>
+
+    <section id="app-switcher" class="doc">
+      <header class="doc__header">
+        <span class="doc__icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="5" height="5" rx="1"/><rect x="9.5" y="3" width="5" height="5" rx="1"/><rect x="16" y="3" width="5" height="5" rx="1"/><rect x="3" y="9.5" width="5" height="5" rx="1"/><rect x="9.5" y="9.5" width="5" height="5" rx="1"/><rect x="16" y="9.5" width="5" height="5" rx="1"/><rect x="3" y="16" width="5" height="5" rx="1"/><rect x="9.5" y="16" width="5" height="5" rx="1"/><rect x="16" y="16" width="5" height="5" rx="1"/></svg>
+        </span>
+        <div>
+          <h2>App Switcher Fairy</h2>
+          <p class="doc__lede">Press a hotkey to display a panel of recently used apps for quick switching — like Cmd+Tab, but more flexible.</p>
+        </div>
+      </header>
+
+      <h3>What it can do</h3>
+      <ul>
+        <li>Show recently used apps in a grid up to 7 columns wide.</li>
+        <li>Hold the hotkey to move the selection forward/backward; release to confirm.</li>
+        <li>Press Esc to cancel; hover and click also select and confirm.</li>
+        <li>Right-click to open a window picker with thumbnails for picking among multiple windows.</li>
+        <li>Automatically restores minimized windows.</li>
+        <li>For Unity Editor, shows the per-project icon automatically.</li>
+        <li>Usage order is persisted across restarts.</li>
+      </ul>
+
+      <h3>Settings</h3>
+      <ul>
+        <li>Master enable/disable toggle.</li>
+        <li>Hotkeys for "Forward" and "Back".</li>
+      </ul>
+
+      <h3>Hotkeys</h3>
+      <table class="hotkeys">
+        <thead><tr><th>Action</th><th>Default</th></tr></thead>
+        <tbody>
+          <tr><td>Forward</td><td><kbd>⌥</kbd><kbd>Tab</kbd></td></tr>
+          <tr><td>Back</td><td><kbd>⌥</kbd><kbd>⇧</kbd><kbd>Tab</kbd></td></tr>
+          <tr><td>Cancel</td><td><kbd>Esc</kbd></td></tr>
+          <tr><td>Open window picker</td><td>Right click</td></tr>
+        </tbody>
+      </table>
+
+      <h3>Required permissions</h3>
+      <p>Accessibility (to restore minimized windows, etc.) and Screen Recording (for thumbnails).</p>
+
+      <h3>Examples</h3>
+      <ul>
+        <li>Switch apps with fewer keystrokes than Cmd+Tab.</li>
+        <li>For apps with multiple windows, jump directly to a specific window.</li>
+      </ul>
+    </section>
+
+    <section id="clipboard" class="doc">
+      <header class="doc__header">
+        <span class="doc__icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="4" width="12" height="17" rx="2"/><rect x="9" y="2.5" width="6" height="3" rx="1"/><path d="M9 11h6M9 14h6M9 17h4"/></svg>
+        </span>
+        <div>
+          <h2>Clipboard Fairy</h2>
+          <p class="doc__lede">Automatically captures copy operations into a history. Recall and paste past text or images with a hotkey.</p>
+        </div>
+      </header>
+
+      <h3>What it can do</h3>
+      <ul>
+        <li>Polls the clipboard every 0.5s and adds new content to the history.</li>
+        <li>Saves both text and images (PNG / TIFF).</li>
+        <li>Automatically excludes sensitive types from password managers (<code>org.nspasteboard.ConcealedType</code>).</li>
+        <li>Pin items to keep them at the top and exempt from auto-deletion.</li>
+        <li>Incremental search to filter the history quickly.</li>
+        <li>Press number keys <kbd>1</kbd>–<kbd>9</kbd> to directly select the matching item.</li>
+        <li>On confirm, returns focus to the original app and sends <kbd>⌘V</kbd> to paste.</li>
+        <li>Used items move to the top (just below pinned items).</li>
+      </ul>
+
+      <h3>Settings</h3>
+      <ul>
+        <li>Master enable/disable toggle.</li>
+        <li>Recall hotkey (default: <kbd>⌃</kbd><kbd>V</kbd>).</li>
+        <li>Search hotkey (default: <kbd>⌘</kbd><kbd>F</kbd>).</li>
+        <li>Max items (20 / 50 / 100 / 200, default 50).</li>
+        <li>Button to clear history.</li>
+      </ul>
+
+      <h3>Keys inside the panel</h3>
+      <table class="hotkeys">
+        <thead><tr><th>Key</th><th>Action</th></tr></thead>
+        <tbody>
+          <tr><td><kbd>↓</kbd> / <kbd>Tab</kbd></td><td>Move to next item.</td></tr>
+          <tr><td><kbd>↑</kbd></td><td>Move to previous item.</td></tr>
+          <tr><td><kbd>Return</kbd></td><td>Paste the selected item.</td></tr>
+          <tr><td><kbd>Delete</kbd></td><td>Delete the selected item.</td></tr>
+          <tr><td><kbd>⌘</kbd><kbd>Delete</kbd></td><td>Clear all history.</td></tr>
+          <tr><td><kbd>Esc</kbd></td><td>Close the panel.</td></tr>
+          <tr><td><kbd>1</kbd>–<kbd>9</kbd></td><td>Select directly by number.</td></tr>
+        </tbody>
+      </table>
+
+      <h3>Required permissions</h3>
+      <p>Accessibility (to send <kbd>⌘V</kbd>).</p>
+
+      <div class="callout callout--note">
+        <p>Saved images are stored as PNGs under <code>~/Library/Application Support/FairyOperator/clipboardImages/</code>.</p>
+      </div>
+    </section>
+
+    <section id="window" class="doc">
+      <header class="doc__header">
+        <span class="doc__icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="4" width="19" height="14" rx="2"/><path d="M2.5 8h19"/><circle cx="5.5" cy="6" r="0.7" fill="currentColor"/><circle cx="8" cy="6" r="0.7" fill="currentColor"/><path d="M8 21l4-4 4 4"/></svg>
+        </span>
+        <div>
+          <h2>Window Manager Fairy</h2>
+          <p class="doc__lede">Snap, maximize, or move the frontmost window between displays with a single hotkey.</p>
+        </div>
+      </header>
+
+      <h3>What it can do</h3>
+      <ul>
+        <li>Snap the window to left half, right half, top half, bottom half, or maximize.</li>
+        <li>Move to another screen while preserving the relative size.</li>
+        <li>In multi-monitor setups, automatically detects which screen the window is currently on.</li>
+      </ul>
+
+      <h3>Hotkeys (defaults)</h3>
+      <table class="hotkeys">
+        <thead><tr><th>Action</th><th>Key</th></tr></thead>
+        <tbody>
+          <tr><td>Left half</td><td><kbd>⌘</kbd><kbd>⌃</kbd><kbd>←</kbd></td></tr>
+          <tr><td>Right half</td><td><kbd>⌘</kbd><kbd>⌃</kbd><kbd>→</kbd></td></tr>
+          <tr><td>Top half</td><td><kbd>⌘</kbd><kbd>⌃</kbd><kbd>⇧</kbd><kbd>↑</kbd></td></tr>
+          <tr><td>Bottom half</td><td><kbd>⌃</kbd><kbd>⌥</kbd><kbd>↓</kbd></td></tr>
+          <tr><td>Maximize</td><td><kbd>⌃</kbd><kbd>Return</kbd></td></tr>
+          <tr><td>Move to another display</td><td><kbd>⌃</kbd><kbd>Space</kbd></td></tr>
+        </tbody>
+      </table>
+
+      <h3>Required permissions</h3>
+      <p>Accessibility.</p>
+
+      <h3>Examples</h3>
+      <ul>
+        <li>Snap windows into left/right halves with the keyboard, no mouse dragging.</li>
+        <li>Instantly move a window between external and internal displays.</li>
+      </ul>
+    </section>
+
+    <section id="ime" class="doc">
+      <header class="doc__header">
+        <span class="doc__icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a13 13 0 010 18M12 3a13 13 0 000 18"/></svg>
+        </span>
+        <div>
+          <h2>IME Control Fairy</h2>
+          <p class="doc__lede">A rule-based key-action engine for assigning IME (Japanese input) switching to keys you choose.</p>
+        </div>
+      </header>
+
+      <h3>What it can do</h3>
+      <ul>
+        <li>Define multiple rules, reorder them, or delete them.</li>
+        <li>Enable or disable each rule individually.</li>
+        <li>Trigger keys can include modifiers.</li>
+        <li>Actions: "Switch to direct input", "Switch to Japanese input", or "Toggle".</li>
+        <li>With "Pass through" enabled, the trigger key's original behavior still fires — e.g. Escape can toggle IME and still act as Escape.</li>
+        <li>Limit each rule to specific apps by bundle ID. An empty list means all apps.</li>
+      </ul>
+
+      <h3>Settings</h3>
+      <ul>
+        <li>Master enable/disable toggle.</li>
+        <li>IME rule list. For each rule:
+          <ul>
+            <li>Trigger key (press the "Change" button to capture it).</li>
+            <li>Action.</li>
+            <li>"Pass through" checkbox.</li>
+            <li>Target apps (add from running apps; remove via badge).</li>
+          </ul>
+        </li>
+      </ul>
+
+      <h3>Default rules</h3>
+      <table class="hotkeys">
+        <thead><tr><th>Trigger</th><th>Action</th><th>Pass through</th></tr></thead>
+        <tbody>
+          <tr><td><kbd>Esc</kbd></td><td>Switch to direct input</td><td>ON</td></tr>
+        </tbody>
+      </table>
+
+      <h3>Required permissions</h3>
+      <p>Accessibility.</p>
+
+      <h3>Examples</h3>
+      <ul>
+        <li>In Vim-style editors, automatically switch to English when leaving Insert mode.</li>
+        <li>Make Escape act as "turn IME off" only in selected apps.</li>
+      </ul>
+    </section>
+
+    <section id="menubar" class="doc">
+      <header class="doc__header">
+        <span class="doc__icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="3.5" width="19" height="17" rx="2.5"/><path d="M2.5 8h19"/><path d="M16 5.5h2M19 5.5h.5"/></svg>
+        </span>
+        <div>
+          <h2>Menu Bar Hider Fairy</h2>
+          <p class="doc__lede">Temporarily hides the app menu so more status icons fit on screen.</p>
+        </div>
+      </header>
+
+      <h3>What it can do</h3>
+      <ul>
+        <li>Always shows a toggle arrow icon (◀ / ▶) in the menu bar.</li>
+        <li>Toggle ON: replaces the app menu with an empty menu, freeing room for status icons.</li>
+        <li>Toggle OFF: restores the original main menu and returns focus to the previous app.</li>
+        <li>If FairyOperator loses focus, the menu reverts automatically.</li>
+        <li>Hotkey can also drive the toggle.</li>
+      </ul>
+
+      <h3>Settings</h3>
+      <ul>
+        <li>Master enable/disable toggle.</li>
+        <li>Current state indicator ("Open" or "Closed").</li>
+        <li>Toggle hotkey (default: <kbd>⌃</kbd><kbd>⌥</kbd><kbd>M</kbd>).</li>
+      </ul>
+
+      <h3>Required permissions</h3>
+      <p>Accessibility.</p>
+
+      <h3>Examples</h3>
+      <ul>
+        <li>When too many status icons are clipped, temporarily hide the app menu to reveal them.</li>
+      </ul>
+    </section>
+
+    <section id="dock" class="doc">
+      <header class="doc__header">
+        <span class="doc__icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l1.6 4.4L18 9l-4.4 1.6L12 15l-1.6-4.4L6 9l4.4-1.6z"/><path d="M5 16l.8 2.2L8 19l-2.2.8L5 22l-.8-2.2L2 19l2.2-.8z"/><path d="M19 14l.6 1.6L21 16l-1.4.4L19 18l-.4-1.6L17 16l1.6-.4z"/></svg>
+        </span>
+        <div>
+          <h2>Dock Decorator Fairy</h2>
+          <p class="doc__lede">Overlays information on Dock icons — window count, hang status, and more — to enhance Dock interactions.</p>
+        </div>
+      </header>
+
+      <h3>What it can do</h3>
+      <ul>
+        <li><strong>Window count badge</strong>　Shows a badge with the window count for apps with two or more windows.</li>
+        <li><strong>Duplicate-app dots</strong>　For multiple instances of the same app, distinguishes them with 8-color dots.</li>
+        <li><strong>Unity project name</strong>　Shows the current project name on the Unity Editor's Dock icon.</li>
+        <li><strong>Not-responding indicator</strong>　Displays an orange hourglass on apps that have stopped responding.</li>
+        <li>Click or hover a Dock icon to open a popover window picker with thumbnails.</li>
+        <li>Pick a window directly from the picker to bring it to the front.</li>
+        <li>The overlay follows the Dock if it moves to another display.</li>
+      </ul>
+
+      <h3>Settings</h3>
+      <ul>
+        <li>Master enable/disable toggle.</li>
+      </ul>
+
+      <h3>Required permissions</h3>
+      <p>Accessibility, and Screen Recording (for thumbnails).</p>
+
+      <h3>Examples</h3>
+      <ul>
+        <li>Distinguish multiple instances of the same app on the Dock.</li>
+        <li>From the Dock, jump straight to a specific window of an app that has many.</li>
+        <li>Quickly spot an app that has stopped responding.</li>
+      </ul>
+
+      <div class="callout callout--warn">
+        <p>Window ID retrieval relies on private API, so behavior may change with future macOS updates.</p>
+      </div>
+    </section>
+
+    <section id="sleepless" class="doc">
+      <header class="doc__header">
+        <span class="doc__icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 14.5A8 8 0 119.5 4a6.5 6.5 0 0010.5 10.5z"/><path d="M14.5 6.5h4l-4 4h4M16 13h3l-3 3h3" stroke-width="1.4"/></svg>
+        </span>
+        <div>
+          <h2>Sleepless Fairy</h2>
+          <p class="doc__lede">Prevents macOS from sleeping. Three modes to choose from; the original state is restored automatically on exit.</p>
+        </div>
+      </header>
+
+      <h3>Modes</h3>
+      <table class="hotkeys">
+        <thead><tr><th>Mode</th><th>Behavior</th><th>Permission</th></tr></thead>
+        <tbody>
+          <tr><td>System sleep only</td><td>Prevents system sleep. The display may still turn off.</td><td>None</td></tr>
+          <tr><td>System + display</td><td>Prevents both system and display sleep.</td><td>None</td></tr>
+          <tr><td>Keep awake when lid closed</td><td>Applies <code>pmset disablesleep 1</code> so the laptop stays awake even when the lid is closed.</td><td>Admin password</td></tr>
+        </tbody>
+      </table>
+
+      <h3>What it can do</h3>
+      <ul>
+        <li>Toggle prevention via hotkey.</li>
+        <li>Toggle from the "Stay Awake" item in the status bar menu.</li>
+        <li>On quit, always releases the IOPMAssertion and restores <code>pmset</code>.</li>
+        <li>If the admin password prompt is canceled in "Keep awake when lid closed" mode, automatically reverts to OFF.</li>
+      </ul>
+
+      <h3>Settings</h3>
+      <ul>
+        <li>Master enable/disable toggle. Shows current state ("Active" or "Stopped").</li>
+        <li>Target mode selector.</li>
+        <li>Toggle hotkey (unset by default).</li>
+      </ul>
+
+      <div class="callout callout--warn">
+        <p>"Keep awake when lid closed" requires the admin password every time you toggle it ON or OFF. If the app is force-quit, <code>pmset</code> restoration is not guaranteed.</p>
+      </div>
+    </section>
+
+    <section id="general" class="doc">
+      <header class="doc__header">
+        <span class="doc__icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3.2"/><path d="M19.4 15a7.5 7.5 0 000-6l1.8-1-2-3.4-2 1a7.5 7.5 0 00-5.2-3V.5h-4v2.1a7.5 7.5 0 00-5.2 3l-2-1-2 3.4 1.8 1a7.5 7.5 0 000 6l-1.8 1 2 3.4 2-1a7.5 7.5 0 005.2 3V23.5h4v-2.1a7.5 7.5 0 005.2-3l2 1 2-3.4z"/></svg>
+        </span>
+        <div>
+          <h2>General</h2>
+          <p class="doc__lede">Settings that apply to the whole app.</p>
+        </div>
+      </header>
+
+      <h3>Settings</h3>
+      <ul>
+        <li>"Launch at Login" toggle — registers FairyOperator as a macOS login item.</li>
+        <li>Shows the current version.</li>
+      </ul>
+    </section>
+
+    <section id="status-icon" class="doc">
+      <h2>Status Bar Icon Actions</h2>
+      <p>The menu bar icon supports the following clicks:</p>
+      <table class="hotkeys">
+        <thead><tr><th>Action</th><th>Behavior</th></tr></thead>
+        <tbody>
+          <tr><td>Left single click</td><td>Opens the menu.</td></tr>
+          <tr><td>Left double click</td><td>Opens the settings window.</td></tr>
+          <tr><td>Right click</td><td>Opens the menu.</td></tr>
+        </tbody>
+      </table>
+      <p>The menu items are: version info, Settings… (<kbd>⌘</kbd><kbd>,</kbd>), Stay Awake (toggle), and Quit (<kbd>Q</kbd>).</p>
+    </section>
+
+    <section id="files" class="doc">
+      <h2>Config Files and Logs</h2>
+      <p>Files used by FairyOperator. Useful when migrating settings or troubleshooting.</p>
+      <table class="kv">
+        <tbody>
+          <tr><th><code>~/Library/Application Support/FairyOperator/config.json</code></th><td>The main JSON file with all app settings.</td></tr>
+          <tr><th><code>~/Library/Application Support/FairyOperator/profiles/&lt;ID&gt;.json</code></th><td>Per-keyboard remap profile.</td></tr>
+          <tr><th><code>~/Library/Application Support/FairyOperator/clipboardHistory.json</code></th><td>Clipboard history metadata.</td></tr>
+          <tr><th><code>~/Library/Application Support/FairyOperator/clipboardImages/</code></th><td>Storage for clipboard images (PNG).</td></tr>
+          <tr><th><code>~/Library/Application Support/FairyOperator/recentAppOrder.json</code></th><td>Records app switcher usage order.</td></tr>
+          <tr><th><code>~/FairyOperator_debug.log</code></th><td>Debug log output — useful for troubleshooting.</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <p class="back-to-top"><a href="#overview">↑ Back to top</a></p>
+
+  </main>
+</div>
+
+<footer class="footer">
+  <div class="container">
+    <p>© FairyOperator</p>
+    <p><a href="./">Home</a> · <a href="https://github.com/piggest/FairyOperator-releases/releases">Releases</a></p>
+  </div>
+</footer>
+
+<script>
+(function () {
+  const links = document.querySelectorAll('.toc a');
+  const map = new Map();
+  links.forEach(a => {
+    const id = a.getAttribute('href').slice(1);
+    const el = document.getElementById(id);
+    if (el) map.set(el, a);
+  });
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      const link = map.get(e.target);
+      if (!link) return;
+      if (e.isIntersecting) {
+        links.forEach(l => l.classList.remove('active'));
+        link.classList.add('active');
+      }
+    });
+  }, { rootMargin: '-30% 0px -65% 0px', threshold: 0 });
+  map.forEach((_, el) => observer.observe(el));
+})();
+</script>
+</body>
+</html>
